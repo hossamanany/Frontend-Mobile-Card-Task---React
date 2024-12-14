@@ -1,10 +1,4 @@
 import { Grid, Typography, Card, Box, Button } from "@mui/material";
-// import { IoIosWifi, IoIosBatteryFull } from "react-icons/io";
-// import { BiSignal4 } from "react-icons/bi";
-// import { MdOutlineKeyboardVoice } from "react-icons/md";
-// import { PiSticker } from "react-icons/pi";
-// import { FiCamera } from "react-icons/fi";
-// import { IoAdd } from "react-icons/io5";
 import { RiExternalLinkFill } from "react-icons/ri";
 import { IoMdCall } from "react-icons/io";
 import { TiArrowBack } from "react-icons/ti";

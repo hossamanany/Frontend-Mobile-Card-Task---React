@@ -22,7 +22,7 @@
 body {
   background: #00000a;
   overflow: hidden;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Montserrat", sans-serif; /* Standardize font */
 }
 
 .scene {
@@ -32,7 +32,7 @@ body {
   align-items: center;
   align-content: center;
   min-height: 100vh;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Montserrat", sans-serif; /* Standardize font */
   font-size: var(--size);
   padding: var(--scene-pad);
   box-sizing: border-box;
@@ -191,6 +191,28 @@ body {
 .header-icon {
   width: 2em;
   height: 2em;
+}
+
+.logo-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.5em;
+}
+
+.logo-icon {
+  width: 2em;
+  height: 2em;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.logo-text {
+  margin-left: 0.5em;
+  font-size: 1.5em;
+  color: white;
+  font-family: "Montserrat", sans-serif;
 }
 
 .content {

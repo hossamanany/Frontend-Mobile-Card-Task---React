@@ -7,8 +7,29 @@ import { IoAdd } from "react-icons/io5";
 import { PiSticker } from "react-icons/pi";
 import { FiCamera } from "react-icons/fi";
 import { MdOutlineKeyboardVoice } from "react-icons/md";
+import { useEffect, useState } from "react";
 
 const PhoneComponent = () => {
+  const [time, setTime] = useState("");
+
+  useEffect(() => {
+    const updateTime = () => {
+      const date = new Date();
+      setTime(
+        date.toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false,
+        })
+      );
+    };
+
+    updateTime();
+    const interval = setInterval(updateTime, 60000); // Update every minute
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <Box className="scene">
       <Box className="phone-container right-third">
@@ -26,7 +47,7 @@ const PhoneComponent = () => {
           <Box className="camera"></Box>
           <Box className="screen-container">
             <Box className="notch-container" tabIndex="0">
-              <Box className="clock">12:00</Box>
+              <Box className="clock">{time}</Box>
               <Box className="notch">
                 <Box className="content">
                   <Box className="right"></Box>
