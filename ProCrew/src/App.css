@@ -1,0 +1,309 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+
+:root {
+  --size: max(5px, 1vmin);
+  --height: 80em;
+  --pad: 1.25em;
+  --border-radius: 6.666em;
+  --gutter: calc(var(--pad) * 2);
+  --scene-pad: 5vmin;
+  --button-width: 0.333em;
+  --notch-height: 3.33em;
+  --notch-width: 33.3%;
+  --notch-radius: calc(var(--border-radius) - calc(var(--pad) * 2));
+  --border-width: 0.4em;
+  --deep-purple: 284;
+  --c-h: var(--deep-purple);
+  --c-s: 100%;
+  --c-l: 50%;
+}
+
+body {
+  background: #00000a;
+  overflow: hidden;
+  font-family: "Montserrat", sans-serif;
+}
+
+.scene {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3em 0;
+  align-items: center;
+  align-content: center;
+  min-height: 100vh;
+  font-family: "Montserrat", sans-serif;
+  font-size: var(--size);
+  padding: var(--scene-pad);
+  box-sizing: border-box;
+}
+
+.phone-container {
+  flex-basis: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.phone {
+  position: relative;
+  z-index: 1;
+  aspect-ratio: 37/76;
+  background: black;
+  height: var(--height);
+  border-radius: var(--border-radius);
+  box-shadow: 0 0 0.1em 0.25em hsl(var(--c-h), 20%, 25%),
+    0 0 0 var(--border-width) hsl(var(--c-h), 30%, 85%);
+  box-sizing: border-box;
+  opacity: 1;
+  transform: scale3d(1, 1, 1);
+}
+.phone:before {
+  content: "";
+  position: absolute;
+  top: var(--border-radius);
+  right: calc(var(--border-width) * -1);
+  bottom: var(--border-radius);
+  left: calc(var(--border-width) * -1);
+  border: 0.5em solid hsl(var(--c-h), 20%, 30%);
+  border-left-width: 0;
+  border-right-width: 0;
+}
+
+.phone-buttons {
+  position: absolute;
+  inset: calc(var(--border-width) * -1);
+}
+.phone-buttons .left,
+.phone-buttons .right {
+  position: absolute;
+  width: var(--button-width);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1.5em;
+}
+.phone-buttons .left {
+  right: 100%;
+  top: calc(var(--border-radius) * 2);
+}
+.phone-buttons .left .button:nth-child(1) {
+  height: 3em;
+  margin-bottom: 0.5em;
+}
+.phone-buttons .right {
+  left: 100%;
+  transform: scale3d(-1, 1, 1);
+  top: calc(var(--border-radius) * 3);
+}
+.phone-buttons .right .button {
+  height: 9.5em;
+}
+.phone-buttons .button {
+  background: hsl(var(--c-h), 20%, 95%);
+  height: 6em;
+  box-shadow: inset -0.15em 0 0.1em black,
+    inset 0 0 0.1em hsl(var(--c-h), 30%, 90%),
+    inset 0 0.2em 0.1em hsl(var(--c-h), 30%, 90%),
+    inset 0 -0.2em 0.1em hsl(var(--c-h), 30%, 90%),
+    inset -0.1em 0.333em 0.1em rgba(0, 0, 0, 0.5),
+    inset -0.1em -0.333em 0.1em rgba(0, 0, 0, 0.5);
+  border-top-left-radius: 0.2em;
+  border-bottom-left-radius: 0.2em;
+}
+
+.screen-container {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--border-radius);
+  border: var(--pad) solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(var(--pad) * 2);
+}
+.screen-container:before {
+  content: "";
+  position: absolute;
+  z-index: 4;
+  background: black;
+  width: 36.6%;
+  bottom: calc(var(--pad) * 0.75);
+  height: calc(var(--pad) * 0.5);
+  border-radius: calc(var(--pad) * 0.25);
+  filter: drop-shadow(0 0.1em 0.25em rgba(0, 0, 0, 0.1));
+}
+
+.notch-container {
+  position: absolute;
+  z-index: 3;
+  top: var(--pad);
+  right: var(--pad);
+  left: var(--pad);
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  max-height: calc(var(--notch-radius) * 2);
+  outline: none;
+}
+
+.notch {
+  position: relative;
+  border-radius: var(--notch-radius);
+  pointer-events: all;
+  overflow: hidden;
+  color: white;
+  display: flex;
+  width: 100%;
+  will-change: inherit;
+  filter: drop-shadow(0 1em 2em hsla(0 0% 0% / var(--shadow-opacity, 0)));
+  transform: scale3d(0.375, 0.4, 1);
+  transform-origin: top;
+}
+.notch:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: black;
+  border-radius: inherit;
+}
+
+.clock {
+  position: absolute;
+  left: 1.5em;
+  top: 22%;
+  transform: translateY(-50%);
+  color: black;
+  font-size: 1.5em;
+  font-weight: bold;
+  font-family: "Montserrat", sans-serif;
+}
+
+.header-icons {
+  position: absolute;
+  right: 1.5em;
+  top: 22%;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 0.5em;
+  font-family: "Montserrat", sans-serif;
+}
+
+.header-icon {
+  width: 2em;
+  height: 2em;
+}
+
+.content {
+  --content-padding: 1.75em;
+  --content-gap: 1em;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: stretch;
+  padding: var(--content-padding);
+  gap: var(--content-gap);
+  font-size: 125%;
+  will-change: padding;
+  position: relative;
+  font-family: "Montserrat", sans-serif;
+}
+
+.camera {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: var(--notch-height);
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  pointer-events: none;
+  position: absolute;
+  z-index: 4;
+  top: calc(var(--pad) * 2);
+  right: calc(50% - calc(var(--notch-width) * 0.5));
+  margin-right: calc(var(--pad) * 0.333);
+}
+.camera:before {
+  content: "";
+  height: 33.3%;
+  aspect-ratio: 1;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0.25em #4c4da3;
+  background: radial-gradient(#6667ac, transparent 50%) no-repeat 33.3% 10%/75%
+      50%,
+    radial-gradient(#454680, transparent 50%) no-repeat 60% 85%/50% 50%;
+  background-color: #080928;
+}
+
+.screen {
+  display: flex;
+  background-color: #f4f4f4;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  flex-grow: 1;
+  gap: var(--gutter);
+  box-sizing: border-box;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  padding-top: calc(var(--gutter) * 3);
+  border-radius: calc(var(--border-radius) - var(--pad));
+}
+
+.footer-container {
+  position: absolute;
+  z-index: 3;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  height: calc(var(--notch-radius) * 1.75);
+  outline: none;
+  overflow: hidden;
+  border-radius: 0 0 10px 10px;
+}
+
+.footer {
+  display: flex;
+  width: 100%;
+  background-color: #f4f4f4;
+  border-top: 1px solid rgb(203, 203, 203);
+  padding: 0.5em 1em 1em;
+  border-bottom-left-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+}
+
+.footer-icons {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5em;
+  font-family: "Montserrat", sans-serif;
+  width: 100%;
+}
+
+.footer-icon {
+  width: 2.75em;
+  height: 2.75em;
+}
+
+.attachment-box {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  background-color: white;
+  border-radius: 50px;
+  flex-grow: 1;
+  padding-right: 1em;
+}
+
+@media (min-width: 1024px) {
+  .right-third {
+    position: absolute;
+    right: 10%;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}

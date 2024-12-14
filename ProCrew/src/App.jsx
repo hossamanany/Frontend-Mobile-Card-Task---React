@@ -1,8 +1,7 @@
-import "./App.css";
-import MobileView from "./MobileView";
+import PhoneComponent from "./components/PhoneComponent";
 
 function App() {
-  return <MobileView />;
+  return <PhoneComponent />;
 }
 
 export default App;
